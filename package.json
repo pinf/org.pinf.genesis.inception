@@ -1,4 +1,6 @@
 {
+    "name": "org.pinf.genesis.inception",
+    "version": "0.1.0",
     "main": "index.js",
     "devDependencies": {
         "mocha": "^5.2.0"
