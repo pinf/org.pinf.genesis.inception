@@ -1,0 +1,12 @@
+{
+    "#": "../../",
+
+    ":StaticRoute: <pinf @ ServerMiddleware>": "./StaticRoute.",
+
+    "app #": "./app.",
+    "pinf @ # on.init": "app # init()",
+
+    "app # <pinf @ ServerRoute> /": ":StaticRoute: ./index.html",
+
+    "pinf @ # run()": "init"
+}

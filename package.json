@@ -3,6 +3,8 @@
     "version": "0.1.1",
     "main": "index.js",
     "devDependencies": {
+        "@pinf-it/inf": "^0.1.16",
+        "chai": "^4.2.0",
         "mocha": "^5.2.0"
     },
     "scripts": {

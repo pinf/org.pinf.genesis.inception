@@ -1,0 +1,11 @@
+{
+    "pinf @": "org.pinf.genesis.inception",
+    "pinf @ #": "./",
+
+    "#": [
+        "./contracts/"
+    ],
+
+    "//:git:": "org.gitscm",
+    "//:head+put+get+list:": "Simple REST FS"
+}

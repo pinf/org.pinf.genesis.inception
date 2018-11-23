@@ -1,0 +1,8 @@
+{
+    "aliases": [
+        "github.com/senchalabs/connect",
+        "github.com/expressjs/express",
+        "nodejs/connect",
+        "nodejs/express"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "#": "../../",
+
+    "<Promise>": "./Promise.",
+    "<RequestListener>": "./RequestListener.",
+
+    ":StaticRoute: <Promise>": "./StaticRoute.",
+    ":PromiseToRequestListener: <RequestListener>": "./PromiseToRequestListener.",
+
+    "app #": "./app.",
+    "pinf @ # on.init": "app # init()",
+
+    "app # :PromiseToRequestListener: /": ":StaticRoute: ./index.html",
+
+    "pinf @ # run()": "init"
+}
