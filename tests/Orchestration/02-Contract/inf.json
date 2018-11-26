@@ -1,0 +1,8 @@
+{
+    "#": "../../",
+
+    "app #": "./app.",
+    "pinf @ # on.contract": "app # contract()",
+
+    "pinf @ # run()": "contract"
+}

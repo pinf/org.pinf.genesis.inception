@@ -47,6 +47,34 @@ exports.inf = async function (INF, ALIAS) {
                     }
                 };
             }
-        }
+        },
+
+        invokeWrapper: function (component) {
+
+            if (SUFFIX === "ServerRoute") {
+
+                return function (alias) {
+
+                    return async function (pointer, value) {
+
+                        const suffix = value.contract[0].split("/").pop();
+
+                        if (typeof component[suffix] !== "function") {
+                            return;
+                        }
+
+                        // Only give the value to the interface implementation
+                        if (typeof value.value === "function") {
+                            const orig = value.value;
+                            value.value = async function (req, res) {
+                                return (await orig(req, res));
+                            }
+                        }
+
+                        return component[suffix].call(null, pointer, value.value);
+                    };
+                };
+            }
+        }        
     };
 }

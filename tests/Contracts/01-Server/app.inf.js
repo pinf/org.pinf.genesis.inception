@@ -6,17 +6,16 @@ exports.inf = async function (INF, ALIAS) {
     const routes = [];
 
     return {
+
+        ServerRoute: async function (route, app) {
+
+            routes[route] = app;
+
+            return true;
+        },
+
         invoke: async function (pointer, value) {
 
-            if (
-                value.contract &&
-                value.contract[0] === "org.pinf.genesis.inception/ServerRoute"
-            ) {
-
-                routes[pointer] = value.value;
-
-                return true;
-            } else
             if (pointer === "init()") {
 
                 return async function (uri) {
@@ -29,6 +28,7 @@ exports.inf = async function (INF, ALIAS) {
                             done.resolve(body);
                         }
                     };
+
                     await routes[uri](req, res);
     
                     return done.promise;
