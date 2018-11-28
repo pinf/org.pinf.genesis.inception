@@ -32,9 +32,20 @@ exports.inf = async function (INF, ALIAS) {
                 throw new Error("'run' is deprected! Use 'run()'");
             } else
             if (pointer === "run()") {
-                if (!handlers[value.value]) {
-                    console.error("handlers", handlers);
-                    throw new Error(`No '${value.value}' handlers found to run!`);
+
+                let command = value.value;
+                if (
+                    typeof command === "object" &&
+                    Array.isArray(command._)
+                ) {
+                    command = command._.shift();
+                }
+
+                if (!handlers[command]) {
+                    //console.error("handlers", handlers);
+                    //throw new Error(`No '${value.value}' handlers found to run!`);
+                    // TODO: Log optional warning.
+                    return false;
                 }
 
                 if (!baseDir) {
@@ -52,12 +63,11 @@ exports.inf = async function (INF, ALIAS) {
 
                 // We reset the handlers so that when new ones are added and then triggered
                 // again it does not create an infinite loop.
-                const handlerNodes = handlers[value.value];
+                const handlerNodes = handlers[command];
 //                delete handlers[value.value];
 
                 const apiByAlias = {};
                 return INF.LIB.Promise.mapSeries(handlerNodes, async function (node) {
-
                     apiByAlias[node.alias] = (await node.value(toolchain)).value;
 
                 }).then(function (apis) {
